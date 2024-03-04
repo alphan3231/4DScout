@@ -13,6 +13,20 @@ def home():
 def scouting():
     return render_template("scouting.html")
 
+@app.route("/scouts")
+def scouts():
+    return render_template("scouts.html")
+
+@app.route("/auth", methods=["POST"])
+def auth():
+    passwd = request.form.get("pass")
+    if passwd == "tutumlu":
+        return redirect("/scouting")
+    else:
+        return render_template("fuck.html")
+
+
+
 @app.route("/excel", methods=["POST"])
 def excelPost():
     teamnumber = request.form.get("team-number")
@@ -47,35 +61,65 @@ def excelPost():
 
     drivetrain = request.form.get("drivetrain")
 
+    note = request.form.get("note")
+
     print(teamnumber)
-    return redirect("/scouting")
+    
 
     data = {
-        "Team Number": [teamnumber],
-        "Scout Name": [scoutname],
-        "Center LP": [centerpl],
-        "Leave SZ": [leavesz],
-        "Speaker Scored Auto": [speakerScoredAuto],
-        "Speaker Missed Auto": [speakerMissedAuto],
-        "Amp Scored Auto": [ampScoredAuto],
-        "Amp Missed Auto": [ampMissedAuto],
-        "Speaker Scored Tele": [speakerScoredTele],
-        "Speaker Missed Tele": [speakerMissedTele],
-        "Amp Scored Tele": [ampScoredTele],
-        "Amp Missed Tele": [ampMissedTele],
-        "Amplified Scored Tele": [amplifiedScoredTele],
-        "Trap Scored Tele": [trapScoredTele],
-        "Trap Missed Tele": [trapMissedTele],
+        "Team": [teamnumber],
+        "Name": [scoutname],
+        "CLP": [centerpl],
+        "LSZ": [leavesz],
+        "SSA": [speakerScoredAuto],
+        "SMA": [speakerMissedAuto],
+        "ASA": [ampScoredAuto],
+        "AMA": [ampMissedAuto],
+        "SST": [speakerScoredTele],
+        "SMT": [speakerMissedTele],
+        "AST": [ampScoredTele],
+        "AMT": [ampMissedTele],
+        "AlifiedST": [amplifiedScoredTele],
+        "TST": [trapScoredTele],
+        "TMT": [trapMissedTele],
         "Park": [park],
         "Spotlit": [spotlit],
-        "Pick Up": [pickUp],
+        "PickUp": [pickUp],
         "Defense": [defense],
         "Driver": [driver],
         "Intake": [intake],
         "Speed": [speed],
         "Stability": [stability],
-        "Drivetrain": [drivetrain]
+        "Drivetrain": [drivetrain],
+        "Notes" : [note]
     }
+
+    # data = {
+    #     "Team Number": [teamnumber],
+    #     "Scout Name": [scoutname],
+    #     "Center LP": [centerpl],
+    #     "Leave SZ": [leavesz],
+    #     "Speaker Scored Auto": [speakerScoredAuto],
+    #     "Speaker Missed Auto": [speakerMissedAuto],
+    #     "Amp Scored Auto": [ampScoredAuto],
+    #     "Amp Missed Auto": [ampMissedAuto],
+    #     "Speaker Scored Tele": [speakerScoredTele],
+    #     "Speaker Missed Tele": [speakerMissedTele],
+    #     "Amp Scored Tele": [ampScoredTele],
+    #     "Amp Missed Tele": [ampMissedTele],
+    #     "Amplified Scored Tele": [amplifiedScoredTele],
+    #     "Trap Scored Tele": [trapScoredTele],
+    #     "Trap Missed Tele": [trapMissedTele],
+    #     "Park": [park],
+    #     "Spotlit": [spotlit],
+    #     "Pick Up": [pickUp],
+    #     "Defense": [defense],
+    #     "Driver": [driver],
+    #     "Intake": [intake],
+    #     "Speed": [speed],
+    #     "Stability": [stability],
+    #     "Drivetrain": [drivetrain]
+    # }
 
     df = pd.DataFrame(data)
 

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>4D Scout</title>
+</head>
+
+<body>
+   
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mx-5 px-5">
+        <div class="container-fluid mt-3">
+          <a class="navbar-brand" href="#">4D Scout</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> 
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Scouting</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Scouts</a>
+              </li>
+              
+             
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="contanier">
+        <form action="/excel" method="post">
+            <select class="form-select" id="location" name="location" aria-label="Default select example">
+                <option selected value="Red 1">Red1</option>
+                <option value="Red 2">Red2</option>
+                <option value="Red 3">Red3</option>
+                <option value="Blue 1">Blue1</option>
+                <option value="Blue 2">Blue2</option>
+                <option value="Blue 3">Blue3</option>
+              </select>
+              <br>
+              <hr>
+              <br>
+              <input type="text" id="team-number" name="team-number" placeholder="Team Number">
+              <input type="text" id="scout-name" name="scout-name" placeholder="your own name: ">
+              
+              <br>
+              <hr>
+        
+
+              <input type="checkbox" id="center-lp" name="center-lp" value="0">Center Line Pickup?
+              <input type="checkbox" id="leave-sz" name="leave-sz" value="0">Leave Starting Zone?
+              
+              <br>
+              <hr>
+            
+
+              <h3>Auto</h3>
+              <input type="number" placeholder="Speaker Scored" id="speakerScoredAuto" name="speakerScoredAuto">
+              <input type="number" placeholder="Speaker Missed" id="speakerMissedAuto" name="speakerMissedAuto">
+              <input type="number" placeholder="Amp Scored" id="speakerScoredAuto" name="speakerScoredAuto">
+              <input type="number" placeholder="Amp Missed" id="speakerMissedAuto" name="speakerMissedAuto">
+
+              <br>
+              <hr>
+        
+
+
+              <h3>Teleop</h3>
+              <input type="number" placeholder="Speaker Scored" id="speakerScoredTele" name="speakerScoredTele">
+              <input type="number" placeholder="Speaker Missed" id="speakerMissedTele"  name="speakerMissedTele">
+              <input type="number" placeholder="Amp Scored" id="speakerScoredTele" name="speakerScoredTele">
+              <input type="number" placeholder="Amplified Scored" id="amplifiedScoredTele" name="amplifiedScoredTele">
+              <input type="number" placeholder="Amp Missed" id="ampMissedTele" name="ampMissedTele">
+              <input type="number" placeholder="Trap Scored" id="TrapScoredTele" name="TrapScoredTele">
+              <input type="number" placeholder="Trap Missed" id="TrapMissedTele" name="TrapMissedTele">
+
+              <br>
+              <hr>
+           
+
+
+              <h3>EndGame</h3>
+
+
+              <select class="form-select" id="park" name="park" aria-label="Stage Level">
+                <option selected value="none">None</option>
+                <option value="parked">Parked</option>
+                <option value="onstage">Onstage</option>
+                <option value="harmonized1">Harmonized 1 Robot</option>
+                <option value="harmonized2">Harmonized 2 Robot</option>
+                
+              </select>
+              <br>
+              <input type="checkbox" id="spotlit" name="spotlit" value="0">Spotlit?
+              <input type="checkbox" id="pickUp" name="pick-up" value="0">Can pick up from ground?
+
+              <br>
+              <hr>
+
+              <h3>Rating</h3>
+              <br>
+             
+              
+              <h5>Defense Skills?</h5>
+              <select id="defense" name="defense">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option checked value="notselected">?</option>
+              </select>
+              <br>
+
+              <h5>Driver Skills?</h5>
+              <select id="driver" name="driver">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option checked value="notselected">?</option>
+              </select>
+              <br>
+
+              <h5>Intake?</h5>
+              <select id="intake" name="intake">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option checked value="notselected">?</option>
+              </select>
+              <br>
+
+              <h5>Speed?</h5>
+              <select id="speed" name="speed">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option checked value="notselected">?</option>
+              </select>
+              <br>
+
+              <h5>Stability?</h5>
+              <select id="stability" name="stability">
+                <option checked value="1">1</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option checked value="notselected">?</option>
+              </select>
+              <br>
+
+              <hr>
+            
+              <h3>Robot Details</h3>
+              <h5>Drive Train</h5>
+              <select id="drivetrain" name="drivetrain">
+                <option value="swerve">Swerve</option>
+                <option value="tank-drive">Tank Drive</option>
+              </select>
+              <br>
+              <br>
+              <br>
+              <br>
+              <hr>
+              <button type="submit">Submit</button>
+        </form>
+
+
+        <br><br><br><br><br>
+        <br>
+      
+      </div>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

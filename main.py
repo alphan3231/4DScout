@@ -15,7 +15,9 @@ def scouting():
 
 @app.route("/scouts")
 def scouts():
-    return render_template("scouts.html")
+    html = pd.read_excel("scouting_data.xlsx", sheet_name="Sheet1").to_html()
+    return render_template('scouts.html', html_code=html)
+
 
 @app.route("/auth", methods=["POST"])
 def auth():
@@ -29,11 +31,23 @@ def auth():
 
 @app.route("/excel", methods=["POST"])
 def excelPost():
+
+
     teamnumber = request.form.get("team-number")
     scoutname = request.form.get("scout-name")
-    
+    location = request.form.get("location")
+
     centerpl = request.form.get("center-lp")
+    if centerpl == "1":
+        centerpl = 1
+    else:
+        centerpl = 0
+
     leavesz = request.form.get("leave-sz")
+    if leavesz == "1":
+        leavesz = 1
+    else:
+        leavesz = 0
 
 
     speakerScoredAuto = request.form.get("speakerScoredAuto")
@@ -46,12 +60,23 @@ def excelPost():
     ampScoredTele = request.form.get("ampScoredTele")
     ampMissedTele = request.form.get("ampMissedTele")
     amplifiedScoredTele = request.form.get("amplifiedScoredTele")
-    trapScoredTele = request.form.get("trapScoredTele")
-    trapMissedTele = request.form.get("trapMissedTele"),
+    trapScoredTele = request.form.get("TrapScoredTele")
+    trapMissedTele = request.form.get("TrapMissedTele")
     
     park = request.form.get("park")
+
+
     spotlit = request.form.get("spotlit")
+    if spotlit=="1":
+        spotlit = "true"
+    else:
+        spotlit = "false"
+    
     pickUp = request.form.get("pickUp")
+    if pickUp == "1":
+        pickUp = "true"
+    else:
+        pickUp = "false"
 
     defense = request.form.get("defense")
     driver = request.form.get("driver")
@@ -67,65 +92,47 @@ def excelPost():
     
 
     data = {
+        "Location":[location],
         "Team": [teamnumber],
         "Name": [scoutname],
-        "CLP": [centerpl],
-        "LSZ": [leavesz],
-        "SSA": [speakerScoredAuto],
-        "SMA": [speakerMissedAuto],
-        "ASA": [ampScoredAuto],
-        "AMA": [ampMissedAuto],
-        "SST": [speakerScoredTele],
-        "SMT": [speakerMissedTele],
-        "AST": [ampScoredTele],
-        "AMT": [ampMissedTele],
-        "AlifiedST": [amplifiedScoredTele],
-        "TST": [trapScoredTele],
-        "TMT": [trapMissedTele],
+        "CenterPickUp": [centerpl],
+        "LeaveCommunity": [leavesz],
+        "Speaker Scored Auto": [speakerScoredAuto],
+        "Speaker Missed Auto": [speakerMissedAuto],
+        "Amp Scored Auto": [ampScoredAuto],
+        "Amp Missed Auto": [ampMissedAuto],
+        "Speaker Scored Tele": [speakerScoredTele],
+        "Speaker Missed Tele": [speakerMissedTele],
+        "Amp Scored Tele": [ampScoredTele],
+        "Amp Missed Tele": [ampMissedTele],
+        "Amplified Scored Tele": [amplifiedScoredTele],
+        "Trap Scored Tele": [trapScoredTele],
+        "Trap Missed Tele": [trapMissedTele],
         "Park": [park],
         "Spotlit": [spotlit],
-        "PickUp": [pickUp],
+        "Pick Up": [pickUp],
         "Defense": [defense],
         "Driver": [driver],
         "Intake": [intake],
         "Speed": [speed],
         "Stability": [stability],
         "Drivetrain": [drivetrain],
-        "Notes" : [note]
+        "Notes": [note]
     }
 
-    # data = {
-    #     "Team Number": [teamnumber],
-    #     "Scout Name": [scoutname],
-    #     "Center LP": [centerpl],
-    #     "Leave SZ": [leavesz],
-    #     "Speaker Scored Auto": [speakerScoredAuto],
-    #     "Speaker Missed Auto": [speakerMissedAuto],
-    #     "Amp Scored Auto": [ampScoredAuto],
-    #     "Amp Missed Auto": [ampMissedAuto],
-    #     "Speaker Scored Tele": [speakerScoredTele],
-    #     "Speaker Missed Tele": [speakerMissedTele],
-    #     "Amp Scored Tele": [ampScoredTele],
-    #     "Amp Missed Tele": [ampMissedTele],
-    #     "Amplified Scored Tele": [amplifiedScoredTele],
-    #     "Trap Scored Tele": [trapScoredTele],
-    #     "Trap Missed Tele": [trapMissedTele],
-    #     "Park": [park],
-    #     "Spotlit": [spotlit],
-    #     "Pick Up": [pickUp],
-    #     "Defense": [defense],
-    #     "Driver": [driver],
-    #     "Intake": [intake],
-    #     "Speed": [speed],
-    #     "Stability": [stability],
-    #     "Drivetrain": [drivetrain]
-    # }
-
     df = pd.DataFrame(data)
+    existing_df = pd.read_excel("scouting_data.xlsx")
+
+    combined_df = pd.concat([existing_df, df], ignore_index=True)
+
+    combined_df.to_excel("scouting_data.xlsx", index=False)
+
+    combined_df_csv = combined_df.to_csv
+    
 
     # Save the DataFrame to an Excel file
-    df.to_excel("scouting_data.xlsx", index=False)
+
 
     return redirect("/scouting")
 
-app.run(debug=True)
+app.run(debug=True, host="0.0.0.0", port=80)

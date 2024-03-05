@@ -10,6 +10,11 @@
     <title>4D Scout</title>
 
     <style>
+
+      .contanier{
+        text-align: center;
+      }
+
       hr{
         margin-inline: 10%;
       }
@@ -43,8 +48,8 @@
 
 
       <div class="contanier p-5 mx-5">
-        <form action="/excel" method="post">
-            <select class="form-select" id="location" name="location" aria-label="Default select example">
+        <form action="/excel" method="post" >
+            <select class="form-select px-5 mx-5" id="location" name="location" aria-label="Default select example">
                 <option selected value="Red 1">Red1</option>
                 <option value="Red 2">Red2</option>
                 <option value="Red 3">Red3</option>
@@ -62,8 +67,8 @@
               <hr>
         
 
-              <input type="checkbox" id="center-lp" name="center-lp" value="0">Center Line Pickup?
-              <input type="checkbox" id="leave-sz" name="leave-sz" value="0">Leave Starting Zone?
+              <input type="checkbox" id="center-lp" name="center-lp" value="1">Center Line Pickup?
+              <input type="checkbox" id="leave-sz" name="leave-sz" value="1">Leave Starting Zone?
               
               <br>
               <hr>
@@ -72,8 +77,8 @@
               <h3>Auto</h3>
               <input type="number" placeholder="Speaker Scored" id="speakerScoredAuto" name="speakerScoredAuto">
               <input type="number" placeholder="Speaker Missed" id="speakerMissedAuto" name="speakerMissedAuto">
-              <input type="number" placeholder="Amp Scored" id="speakerScoredAuto" name="speakerScoredAuto">
-              <input type="number" placeholder="Amp Missed" id="speakerMissedAuto" name="speakerMissedAuto">
+              <input type="number" placeholder="Amp Scored" id="ampScoredAuto" name="ampScoredAuto">
+              <input type="number" placeholder="Amp Missed" id="ampMissedAuto" name="ampMissedAuto">
 
               <br>
               <hr>
@@ -83,7 +88,7 @@
               <h3>Teleop</h3>
               <input type="number" placeholder="Speaker Scored" id="speakerScoredTele" name="speakerScoredTele">
               <input type="number" placeholder="Speaker Missed" id="speakerMissedTele"  name="speakerMissedTele">
-              <input type="number" placeholder="Amp Scored" id="speakerScoredTele" name="speakerScoredTele">
+              <input type="number" placeholder="Amp Scored" id="ampScoredTele" name="ampScoredTele">
               <input type="number" placeholder="Amp Missed" id="ampMissedTele" name="ampMissedTele">
               <input type="number" placeholder="Amplified Scored" id="amplifiedScoredTele" name="amplifiedScoredTele">
               <input type="number" placeholder="Trap Scored" id="TrapScoredTele" name="TrapScoredTele">
@@ -97,7 +102,7 @@
               <h3>EndGame</h3>
 
 
-              <select class="form-select" id="park" name="park" aria-label="Stage Level">
+              <select class="form-select px-5 mx-5" id="park" name="park" aria-label="Stage Level">
                 <option selected value="none">None</option>
                 <option value="parked">Parked</option>
                 <option value="onstage">Onstage</option>
@@ -106,8 +111,8 @@
                 
               </select>
               <br>
-              <input type="checkbox" id="spotlit" name="spotlit" value="0">Spotlit?
-              <input type="checkbox" id="pickUp" name="pick-up" value="0">Can pick up from ground?
+              <input type="checkbox" id="spotlit" name="spotlit" value="1">Spotlit?
+              <input type="checkbox" id="pickUp" name="pick-up" value="1">Can pick up from ground?
 
               <br>
               <hr>
@@ -123,7 +128,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <option checked value="notselected">?</option>
+                <option checked value="?">?</option>
               </select>
               <br>
 
@@ -134,7 +139,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <option checked value="notselected">?</option>
+                <option checked value="?">?</option>
               </select>
               <br>
 
@@ -145,7 +150,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <option checked value="notselected">?</option>
+                <option checked value="?">?</option>
               </select>
               <br>
 
@@ -156,7 +161,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <option checked value="notselected">?</option>
+                <option checked value="?">?</option>
               </select>
               <br>
 
@@ -168,7 +173,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <option checked value="notselected">?</option>
+                <option checked value="?">?</option>
               </select>
               <br>
 

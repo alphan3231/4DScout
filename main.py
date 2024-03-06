@@ -5,18 +5,21 @@ import os
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def home():
     return render_template("base.html")
+
 
 @app.route("/scouting")
 def scouting():
     return render_template("scouting.html")
 
+
 @app.route("/scouts")
 def scouts():
     html = pd.read_excel("scouting_data.xlsx", sheet_name="Sheet1").to_html()
-    return render_template('scouts.html', html_code=html)
+    return render_template("scouts.html", html_code=html)
 
 
 @app.route("/auth", methods=["POST"])
@@ -28,11 +31,8 @@ def auth():
         return render_template("fuck.html")
 
 
-
 @app.route("/excel", methods=["POST"])
 def excelPost():
-
-
     teamnumber = request.form.get("team-number")
     scoutname = request.form.get("scout-name")
     location = request.form.get("location")
@@ -49,7 +49,6 @@ def excelPost():
     else:
         leavesz = 0
 
-
     speakerScoredAuto = request.form.get("speakerScoredAuto")
     speakerMissedAuto = request.form.get("speakerMissedAuto")
     ampScoredAuto = request.form.get("ampScoredAuto")
@@ -62,16 +61,15 @@ def excelPost():
     amplifiedScoredTele = request.form.get("amplifiedScoredTele")
     trapScoredTele = request.form.get("TrapScoredTele")
     trapMissedTele = request.form.get("TrapMissedTele")
-    
+
     park = request.form.get("park")
 
-
     spotlit = request.form.get("spotlit")
-    if spotlit=="1":
+    if spotlit == "1":
         spotlit = "true"
     else:
         spotlit = "false"
-    
+
     pickUp = request.form.get("pickUp")
     if pickUp == "1":
         pickUp = "true"
@@ -89,10 +87,9 @@ def excelPost():
     note = request.form.get("note")
 
     print(teamnumber)
-    
 
     data = {
-        "Location":[location],
+        "Location": [location],
         "Team": [teamnumber],
         "Name": [scoutname],
         "CenterPickUp": [centerpl],
@@ -117,7 +114,7 @@ def excelPost():
         "Speed": [speed],
         "Stability": [stability],
         "Drivetrain": [drivetrain],
-        "Notes": [note]
+        "Notes": [note],
     }
 
     df = pd.DataFrame(data)
@@ -128,11 +125,34 @@ def excelPost():
     combined_df.to_excel("scouting_data.xlsx", index=False)
 
     combined_df_csv = combined_df.to_csv
-    
 
     # Save the DataFrame to an Excel file
 
-
     return redirect("/scouting")
+
+@app.route("/delrow",methods=["POST"])
+def delRov():
+    row = int(request.form.get("row"))
+    
+    passwd = request.form.get("passwd")
+
+    exsinting_df = pd.read_excel("scouting_data.xlsx")
+
+    if passwd == "sebnem":
+        updated_df = exsinting_df.drop(index=row)
+        updated_df.to_excel("scouting_data.xlsx", index=False)
+
+
+
+    return redirect("/scouts")
+
+
+
+
+def excel_sheet_Func():
+    existing_df=pd.read_excel("scouting_data.xlsx")
+    
+    return
+
 
 app.run(debug=True, host="0.0.0.0", port=80)
